@@ -6,39 +6,6 @@ import { useDispatch } from "react-redux";
 import { soundEffects } from "../modules";
 import { useRoute } from "@react-navigation/native";
 
-// const data = [
-//   {
-//     dataId: "1",
-//     sentence: "I am a boy",
-//     choices: ["is", "am", "are"],
-//   },
-//   {
-//     dataId: "2",
-//     sentence: "I was playing",
-//     choices: ["was", "am", "are"],
-//   },
-//   {
-//     dataId: "3",
-//     sentence: "How are you",
-//     choices: ["is", "am", "are"],
-//   },
-//   {
-//     dataId: "4",
-//     sentence: "She looks good",
-//     choices: ["looks", "looked", "is looking"],
-//   },
-//   {
-//     dataId: "5",
-//     sentence: "What a great day !",
-//     choices: ["an", "a", "are"],
-//   },
-//   {
-//     dataId: "6",
-//     sentence: "Look at me",
-//     choices: ["in", "over", "at"],
-//   },
-// ];
-
 export default function MissingWord({ navigation }) {
   const dispatch = useDispatch();
   const route = useRoute();

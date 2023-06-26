@@ -8,47 +8,12 @@ import Avatar from "../components/Avatar";
 import { sendAttempts } from "../store/globalSlice";
 import { soundEffects } from "../modules";
 
-const any = [
-  {
-    _id: 0,
-    num1: 10,
-    num2: 3,
-    operator: "*",
-    choices: [12, 28, 30],
-  },
-  {
-    _id: 1,
-    num1: 4,
-    num2: 54,
-    operator: "+",
-    choices: [52, 58, 20],
-  },
-  {
-    _id: 2,
-    num1: 28,
-    num2: 3,
-    operator: "-",
-    choices: [25, 38, 97],
-  },
-  {
-    _id: 3,
-    num1: 9,
-    num2: 3,
-    operator: "/",
-    choices: [46, 234, 3],
-  },
-];
-
 export default function Sum_Sub({ navigation }) {
   const dispatch = useDispatch();
   const route = useRoute();
 
   const { taskId } = route.params;
   const data = route.params.word_Pic;
-  // console.log(data);
-
-  //to store data array length
-  const dataLength = data.length;
 
   //to store how many objects of data is already done
   const [done, setDone] = useState(0);

@@ -18,59 +18,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { fetchData, setWordPic } from "../store/globalSlice";
 import { useRef } from "react";
 
-// const data = [
-//   {
-//     taskId: 1,
-//     gameName: [0, 1, 2],
-//     done: [true, true, false],
-//     data: [
-//       {
-//         dataId: 0,
-//         defintioninEn: "apple",
-//         imageUrl:
-//           "https://thumbs.dreamstime.com/b/red-apple-isolated-clipping-path-19130134.jpg",
-//       },
-//       {
-//         dataId: 1,
-//         defintioninEn: "bat",
-//         imageUrl:
-//           "https://thumbs.dreamstime.com/b/flying-vampire-bat-isolated-white-background-d-rendering-77923549.jpg",
-//       },
-//       {
-//         dataId: 2,
-//         defintioninEn: "cat",
-//         imageUrl:
-//           "https://thumbs.dreamstime.com/b/cat-laughing-very-happy-54680614.jpg",
-//       },
-//       {
-//         dataId: 3,
-//         defintioninEn: "door",
-//         imageUrl:
-//           "https://thumbs.dreamstime.com/b/door-you-can-use-clean-interior-31806445.jpg",
-//       },
-//       {
-//         dataId: 4,
-//         defintioninEn: "egg",
-//         imageUrl: "https://thumbs.dreamstime.com/b/egg-9804046.jpg",
-//       },
-//       {
-//         dataId: 5,
-//         defintioninEn: "fork",
-//         imageUrl: "https://thumbs.dreamstime.com/b/fork-6231372.jpg",
-//       },
-//     ],
-//   },
-// { taskNumber: 2, gameName: [0], done: [false] },
-// { taskNumber: 3, gameName: [2], done: [false] },
-// { taskNumber: 4, gameName: [1], done: [false] },
-// { taskNumber: 5, gameName: [0], done: [false] },
-// { taskNumber: 6, gameName: [2], done: [false] },
-// { taskNumber: 7, gameName: [0], done: [false] },
-// { taskNumber: 8, gameName: [0], done: [false] },
-// { taskNumber: 9, gameName: [0], done: [false] },
-// { taskNumber: 10, gameName: [0], done: [false] },
-// ];
-
 //array to hold games routes
 const games = [
   "Connect",

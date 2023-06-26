@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import tw from "tailwind-react-native-classnames";
-import { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useRef } from "react";
+import { useSelector } from "react-redux";
 import LottieView from "lottie-react-native";
 
 export default function Avatar() {

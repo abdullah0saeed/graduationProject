@@ -19,7 +19,6 @@ export default function Arrange({ navigation }) {
   const { word_Pic, taskId } = route.params;
 
   const { url } = useSelector((state) => state.global);
-  const state = useSelector((state) => state);
   const [selectedWords, setSelectedWords] = useState([]);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isFinalCorrect, setFinalCorrect] = useState(false);
@@ -29,7 +28,6 @@ export default function Arrange({ navigation }) {
   const [disabledLetters, setDisabledLetters] = useState({});
   const [attempts, setAttempts] = useState(0);
   const [questions, setQuestions] = useState([]);
-  // const [selectedIndexs, setSelectedIndexs] = useState([]);
 
   const dispatch = useDispatch();
   const handleDisableClick = useCallback((word, index) => {
