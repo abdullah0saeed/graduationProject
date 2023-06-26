@@ -9,7 +9,9 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#36B0F0",
+      "width": "25%",
+      "height": "25%"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,10 +23,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.abdullah_saeed.graduationproject"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1d18a5a8-d5b0-4598-b51a-708f33a4d541"
+      }
     }
   }
 }
