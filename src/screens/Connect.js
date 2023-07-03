@@ -2,7 +2,14 @@ import { useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { sendAttempts } from "../store/globalSlice";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+  StyleSheet,
+} from "react-native";
 import tw from "tailwind-react-native-classnames";
 
 import styles from "../styles";
@@ -86,74 +93,31 @@ const Connect = ({ navigation }) => {
           key={word_Pic[randomWords[i]]?.dataId}
         >
           {word_Pic.indexOf(word_Pic[randomWords[i]]) == 0 && correct0 ? (
-            <Text
-              style={[
-                styles.cardText,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <Text style={[styles.cardText, localStyles.correctAns]}>
               {word_Pic[randomWords[i]]?.definitionInEn}
             </Text>
           ) : word_Pic.indexOf(word_Pic[randomWords[i]]) == 1 && correct1 ? (
-            <Text
-              style={[
-                styles.cardText,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <Text style={[styles.cardText, localStyles.correctAns]}>
               {word_Pic[randomWords[i]]?.definitionInEn}
             </Text>
           ) : word_Pic.indexOf(word_Pic[randomWords[i]]) == 2 && correct2 ? (
-            <Text
-              style={[
-                styles.cardText,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <Text style={[styles.cardText, localStyles.correctAns]}>
               {word_Pic[randomWords[i]]?.definitionInEn}
             </Text>
           ) : word_Pic.indexOf(word_Pic[randomWords[i]]) == 3 && correct3 ? (
-            <Text
-              style={[
-                styles.cardText,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <Text style={[styles.cardText, localStyles.correctAns]}>
               {word_Pic[randomWords[i]]?.definitionInEn}
             </Text>
           ) : word_Pic.indexOf(word_Pic[randomWords[i]]) == 4 && correct4 ? (
-            <Text
-              style={[
-                styles.cardText,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <Text style={[styles.cardText, localStyles.correctAns]}>
               {word_Pic[randomWords[i]]?.definitionInEn}
             </Text>
           ) : word_Pic.indexOf(word_Pic[randomWords[i]]) == 5 && correct5 ? (
-            <Text
-              style={[
-                styles.cardText,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <Text style={[styles.cardText, localStyles.correctAns]}>
               {word_Pic[randomWords[i]]?.definitionInEn}
             </Text>
           ) : (
-            <Text
-              style={[
-                styles.cardText,
-                ,
-                { backgroundColor: "#1D3Eff" },
-                tw`rounded-3xl text-white`,
-              ]}
-            >
+            <Text style={[styles.cardText, , tw`text-white`]}>
               {word_Pic[randomWords[i]]?.definitionInEn}
             </Text>
           )}
@@ -187,73 +151,31 @@ const Connect = ({ navigation }) => {
           key={word_Pic[randomPics[i]]?.dataId}
         >
           {word_Pic.indexOf(word_Pic[randomPics[i]]) == 0 && correct0 ? (
-            <View
-              style={[
-                styles.cardImg,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <View style={[styles.cardImg, localStyles.correctAns]}>
               <Image source={{ uri: url + imgPath }} style={styles.img} />
             </View>
           ) : word_Pic.indexOf(word_Pic[randomPics[i]]) == 1 && correct1 ? (
-            <View
-              style={[
-                styles.cardImg,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <View style={[styles.cardImg, localStyles.correctAns]}>
               <Image source={{ uri: url + imgPath }} style={styles.img} />
             </View>
           ) : word_Pic.indexOf(word_Pic[randomPics[i]]) == 2 && correct2 ? (
-            <View
-              style={[
-                styles.cardImg,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <View style={[styles.cardImg, localStyles.correctAns]}>
               <Image source={{ uri: url + imgPath }} style={styles.img} />
             </View>
           ) : word_Pic.indexOf(word_Pic[randomPics[i]]) == 3 && correct3 ? (
-            <View
-              style={[
-                styles.cardImg,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <View style={[styles.cardImg, localStyles.correctAns]}>
               <Image source={{ uri: url + imgPath }} style={styles.img} />
             </View>
           ) : word_Pic.indexOf(word_Pic[randomPics[i]]) == 4 && correct4 ? (
-            <View
-              style={[
-                styles.cardImg,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <View style={[styles.cardImg, localStyles.correctAns]}>
               <Image source={{ uri: url + imgPath }} style={styles.img} />
             </View>
           ) : word_Pic.indexOf(word_Pic[randomPics[i]]) == 5 && correct5 ? (
-            <View
-              style={[
-                styles.cardImg,
-                { backgroundColor: "#50D97F" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <View style={[styles.cardImg, localStyles.correctAns]}>
               <Image source={{ uri: url + imgPath }} style={styles.img} />
             </View>
           ) : (
-            <View
-              style={[
-                styles.cardImg,
-                { backgroundColor: "#1D3Eff" },
-                tw`rounded-3xl`,
-              ]}
-            >
+            <View style={[styles.cardImg]}>
               <Image source={{ uri: url + imgPath }} style={styles.img} />
             </View>
           )}
@@ -316,6 +238,30 @@ const Connect = ({ navigation }) => {
           } else if (done === 5) {
             //play sound
             soundEffects(2);
+
+            //navigate to score screen and send feedback
+            setTimeout(() => {
+              const sentData = {
+                data1Attempts: wrong0,
+                data2Attempts: wrong1,
+                data3Attempts: wrong2,
+                data4Attempts: wrong3,
+                data5Attempts: wrong4,
+                data6Attempts: wrong5,
+              };
+              dispatch(
+                sendAttempts({
+                  sentData,
+                  gameId: "0",
+                  taskId,
+                })
+              );
+              navigation.replace("Score", {
+                wrong,
+                word_Pic,
+                path: "Connect",
+              });
+            }, 400);
           }
         }, 500);
       }
@@ -343,92 +289,92 @@ const Connect = ({ navigation }) => {
   };
   ///////////////////////////////////////////////////////////////////
   return (
-    <>
-      <View style={styles.topBar}>
-        <View style={{ flexDirection: "row" }}>
-          <Text
+    <ImageBackground
+      source={require("../../assets/backgrounds/sum_sub-bg.png")}
+      style={[{ flex: 1 }, tw`justify-center`]}
+      imageStyle={{ resizeMode: "stretch" }}
+    >
+      {/* <View style={styles.topBar}> */}
+      {/* <View style={{ flexDirection: "row" }}> */}
+      {/* <Text
+          style={{
+            marginBottom: "10%",
+            color: "#fff",
+            width: "75%",
+            height: "100%",
+            textAlignVertical: "center",
+            padding: 3,
+            fontWeight: "bold",
+            fontSize: 14,
+          }}
+        >
+          Welcome {`${playerName} `}
+          <Image
+            source={require("../../assets/smile.png")}
+            style={{ width: 33, height: 33, marginTop: "3%" }}
+          />
+        </Text> */}
+      {/* {done >= 6 && (
+          <TouchableOpacity
             style={{
-              marginBottom: "10%",
-              color: "#fff",
-              width: "75%",
-              height: "100%",
-              textAlignVertical: "center",
-              padding: 3,
-              fontWeight: "bold",
-              fontSize: 14,
+              top: 10,
+              width: "80%",
+              height: 50,
+              marginRight: 20,
+              marginLeft: 40,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#E20476",
+              borderRadius: 10,
+              borderWidth: 4,
+              borderColor: "#f20476",
+            }}
+            onPress={() => {
+              const sentData = {
+                data1Attempts: wrong0,
+                data2Attempts: wrong1,
+                data3Attempts: wrong2,
+                data4Attempts: wrong3,
+                data5Attempts: wrong4,
+                data6Attempts: wrong5,
+              };
+              dispatch(
+                sendAttempts({
+                  sentData,
+                  gameId: "0",
+                  taskId,
+                })
+              );
+              navigation.replace("Score", {
+                wrong,
+                word_Pic,
+                path: "Connect",
+              });
             }}
           >
-            Welcome {`${playerName} `}
-            <Image
-              source={require("../../assets/smile.png")}
-              style={{ width: 33, height: 33, marginTop: "3%" }}
-            />
-          </Text>
-          {done >= 6 ? (
-            <View
-              style={{
-                width: "25%",
-                height: "60%",
-                margin: "1%",
-                marginTop: "5%",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#E20476",
-                borderRadius: 10,
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => {
-                  const sentData = {
-                    data1Attempts: wrong0,
-                    data2Attempts: wrong1,
-                    data3Attempts: wrong2,
-                    data4Attempts: wrong3,
-                    data5Attempts: wrong4,
-                    data6Attempts: wrong5,
-                  };
-                  dispatch(
-                    sendAttempts({
-                      sentData,
-                      gameId: "0",
-                      taskId,
-                    })
-                  );
-                  navigation.replace("Score", {
-                    wrong,
-                    word_Pic,
-                    path: "Connect",
-                  });
-                }}
-              >
-                <View>
-                  <Image
-                    source={require("../../assets/rArrow.png")}
-                    style={{ width: 30, height: 30 }}
-                  />
-                </View>
-              </TouchableOpacity>
+            <View>
+              <Image
+                source={require("../../assets/rArrow.png")}
+                style={{ width: 50, height: 50 }}
+              />
             </View>
-          ) : (
-            <View
-              style={{
-                width: "25%",
-                marginTop: "8.5%",
-                alignItems: "center",
-                margin: "1%",
-              }}
-            >
-              <Text></Text>
-            </View>
-          )}
-        </View>
+          </TouchableOpacity>
+        )} */}
+      {/* </View> */}
+      {/* </View> */}
+      <View style={[styles.body]}>
+        <View style={[styles.leftView]}>{setWordView()}</View>
+        <View style={[styles.rightView]}>{setPicView()}</View>
       </View>
-      <View style={styles.body}>
-        <View style={styles.leftView}>{setWordView()}</View>
-        <View style={styles.rightView}>{setPicView()}</View>
-      </View>
-    </>
+    </ImageBackground>
   );
 };
 
 export default Connect;
+
+const localStyles = StyleSheet.create({
+  correctAns: {
+    backgroundColor: "#50D97F",
+    display: "none",
+  },
+});

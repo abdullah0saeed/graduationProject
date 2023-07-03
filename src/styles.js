@@ -50,7 +50,7 @@ export default StyleSheet.create({
   body: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "#60A5FA",
+    // backgroundColor: "#60A5FA",
   },
   leftView: {
     flex: 1,
@@ -72,26 +72,30 @@ export default StyleSheet.create({
     margin: "2%",
     alignItems: "center",
     justifyContent: "center",
+    opacity: 0.9,
   },
   img: {
     width: "50%",
-    height: "95%",
+    height: "80%",
     margin: 5,
   },
   cardText: {
     width: "100%",
     height: "100%",
+    borderRadius: 30,
     textAlign: "center",
     textAlignVertical: "center",
     fontSize: 25,
     fontWeight: "bold",
+    backgroundColor: "#7f5Eff",
   },
   cardImg: {
     width: "100%",
     height: "100%",
+    borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#09B8F4",
+    backgroundColor: "#8D3Eff",
   },
   topBar: {
     flex: 1 / 15,

@@ -6,6 +6,9 @@ import {
   Dimensions,
   RefreshControl,
   TouchableOpacity,
+  View,
+  Image,
+  ScrollView,
 } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import { FlashList } from "@shopify/flash-list";
@@ -113,6 +116,19 @@ export default function TasksMap({ navigation }) {
       })
     : null;
 
+  //to scroll to the next level to be played
+  useEffect(() => {
+    // if (listRef.current) {
+    //   const scrollOffset = listRef.current.getScrollOffset();
+    //   const contentSize = listRef.current.getContentSize();
+    //   const targetOffset = scrollOffset + 3 * contentSize.height;
+    //   listRef.current.scrollTo({
+    //     offset: targetOffset,
+    //     animated: true,
+    //   });
+    // }
+  }, []);
+
   return (
     <ImageBackground
       style={styles.background}
@@ -147,7 +163,6 @@ export default function TasksMap({ navigation }) {
       >
         <Ionicons name="reload" size={35} color="white" />
       </TouchableOpacity>
-
       <FlashList
         ref={listRef}
         data={allLevels}
@@ -190,9 +205,30 @@ export default function TasksMap({ navigation }) {
                     });
                   }}
                 >
-                  <Text style={[styles.text, { marginLeft: "45%" }]}>
-                    {item.taskNumber}
-                  </Text>
+                  <View style={{ marginLeft: "45%" }}>
+                    <Text style={[styles.text]}>{item.taskNumber}</Text>
+                    {allLevels[index].done == false && (
+                      <View
+                        style={{
+                          position: "absolute",
+                          right: -15,
+                          bottom: -15,
+                          width: 45,
+                          height: 45,
+                          borderRadius: 60 / 2,
+                          borderWidth: 4,
+                          borderColor: "#fff",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Image
+                          source={require("../../assets/smile.png")}
+                          style={{ width: "100%", height: "100%" }}
+                        />
+                      </View>
+                    )}
+                  </View>
                 </TouchableOpacity>
               ) : (
                 //the rest elements
@@ -205,22 +241,49 @@ export default function TasksMap({ navigation }) {
                     });
                   }}
                 >
-                  <Text
+                  <View
                     style={[
-                      styles.text,
                       (index + 1) % 8 === 1 && { marginLeft: "45%" },
                       (index + 1) % 8 === 3 && { marginLeft: "40%" },
                       (index + 1) % 8 === 4 && { marginLeft: "30%" },
                       (index + 1) % 8 === 5 && { marginLeft: "25%" },
                       (index + 1) % 8 === 6 && { marginLeft: "-40%" },
                       (index + 1) % 8 === 0 && { marginLeft: "47%" },
-                      !allLevels[index - 1].done && {
-                        backgroundColor: "#929495",
-                      },
                     ]}
                   >
-                    {item.taskNumber}
-                  </Text>
+                    <Text
+                      style={[
+                        styles.text,
+                        !allLevels[index - 1].done && {
+                          backgroundColor: "#929495",
+                        },
+                      ]}
+                    >
+                      {item.taskNumber}
+                    </Text>
+                    {allLevels[index].done == false &&
+                      allLevels[index - 1].done == true && (
+                        <View
+                          style={{
+                            position: "absolute",
+                            right: -15,
+                            bottom: -15,
+                            width: 47,
+                            height: 47,
+                            borderRadius: 60 / 2,
+                            borderWidth: 4,
+                            borderColor: "#fff",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Image
+                            source={require("../../assets/smile.png")}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                        </View>
+                      )}
+                  </View>
                 </TouchableOpacity>
               )}
             </ImageBackground>
