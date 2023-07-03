@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useRoute } from "@react-navigation/native";
 
 import Avatar from "../components/Avatar";
+import Board from "../components/Board";
 import { sendAttempts } from "../store/globalSlice";
 import { soundEffects } from "../modules";
 
@@ -111,172 +112,118 @@ export default function Sum_Sub({ navigation }) {
   };
 
   return (
-    <ImageBackground
-      source={require("../../assets/backgrounds/sum_sub-bg.png")}
-      style={[{ flex: 1 }, tw`justify-center`]}
-      imageStyle={{ resizeMode: "stretch" }}
-    >
-      {/* exit button */}
-      <TouchableOpacity
+    <Board>
+      {/* show question */}
+      <View
+        style={[
+          { transform: [{ rotate: "90deg" }], top: "45%", right: "-23%" },
+          tw`absolute  flex flex-row `,
+        ]}
+      >
+        <View style={[tw`w-3/12`]}>
+          <Text
+            style={[
+              tw`text-4xl font-bold text-white text-center w-full`,
+              // { fontFamily: "finger-paint" },
+            ]}
+          >
+            {data[done].numbers.num1}
+          </Text>
+        </View>
+        <View style={[tw`w-1/12`]}>
+          <Text style={[tw`text-4xl font-bold text-white text-center`]}>
+            {data[done].numbers.operator === "*"
+              ? "x"
+              : data[done].numbers.operator}
+          </Text>
+        </View>
+        <View style={[tw`w-3/12`]}>
+          <Text style={[tw`text-4xl font-bold text-white text-center`]}>
+            {data[done].numbers.num2}
+          </Text>
+        </View>
+        <View style={[tw`w-1/12`]}>
+          <Text style={[tw`text-4xl font-bold text-white text-center`]}>=</Text>
+        </View>
+        <View
+          style={[
+            tw`w-4/12 flex justify-center items-center rounded-md`,
+            { backgroundColor: "rgba(0, 0, 0, 0.53)" },
+          ]}
+        >
+          <Text
+            style={[
+              tw`text-4xl font-bold text-white w-full text-center pt-1`,
+              chosenAns !== null &&
+                !correct &&
+                tw`bg-red-400 border-2 border-red-500 rounded-md text-black`,
+              chosenAns !== null &&
+                correct &&
+                tw`bg-green-400 border-2 border-green-500 rounded-md text-black`,
+            ]}
+          >
+            {chosenAns === null ? "?" : chosenAns}
+          </Text>
+        </View>
+      </View>
+      {/* show choices */}
+      <View
         style={[
           {
             transform: [{ rotate: "90deg" }],
-            backgroundColor: "#6F5AC5",
-            borderColor: "#6F4AC5",
-            width: "15%",
-            height: "8%",
-            shadowColor: "rgba(65, 0, 251, 0.53)",
+            top: "41%",
+            right: "13%",
+            height: "15%",
           },
-          tw`absolute top-3 right-3 flex justify-center items-center rounded-xl border-4 shadow-xl  z-40`,
-        ]}
-        onPress={() => {
-          navigation.replace("TasksMap");
-        }}
-      >
-        <Text style={[tw`text-white text-4xl font-bold text-center `]}>x</Text>
-      </TouchableOpacity>
-
-      {/* Avatar view */}
-      <View
-        style={[
-          { transform: [{ rotate: "90deg" }], marginTop: "-153%" },
-          tw` w-8/12 z-30`,
+          tw`absolute  flex flex-row`,
         ]}
       >
-        <Avatar />
-      </View>
-      {/* view the board */}
-      <View
-        style={[
-          { height: "65%", width: "85%", marginTop: "-135%" },
-          tw`flex self-center `,
-        ]}
-      >
-        <ImageBackground
-          source={require("../../assets/images/greenBoard.png")}
-          style={[tw`w-full h-full relative`]}
+        <TouchableOpacity
+          style={[
+            tw`w-1/3 flex justify-center items-center mr-2 rounded-xl shadow-xl`,
+            { backgroundColor: "#F5F5FD" },
+          ]}
+          onPress={() => {
+            handelPress(data[done].choices[0]);
+          }}
         >
-          {/* show question */}
-          <View
-            style={[
-              { transform: [{ rotate: "90deg" }], top: "45%", right: "-23%" },
-              tw`absolute  flex flex-row `,
-            ]}
+          <Text
+            style={[tw`text-4xl font-bold text-white text-center text-black`]}
           >
-            <View style={[tw`w-3/12`]}>
-              <Text
-                style={[
-                  tw`text-4xl font-bold text-white text-center w-full`,
-                  // { fontFamily: "finger-paint" },
-                ]}
-              >
-                {data[done].numbers.num1}
-              </Text>
-            </View>
-            <View style={[tw`w-1/12`]}>
-              <Text style={[tw`text-4xl font-bold text-white text-center`]}>
-                {data[done].numbers.operator === "*"
-                  ? "x"
-                  : data[done].numbers.operator}
-              </Text>
-            </View>
-            <View style={[tw`w-3/12`]}>
-              <Text style={[tw`text-4xl font-bold text-white text-center`]}>
-                {data[done].numbers.num2}
-              </Text>
-            </View>
-            <View style={[tw`w-1/12`]}>
-              <Text style={[tw`text-4xl font-bold text-white text-center`]}>
-                =
-              </Text>
-            </View>
-            <View
-              style={[
-                tw`w-4/12 flex justify-center items-center rounded-md`,
-                { backgroundColor: "rgba(0, 0, 0, 0.53)" },
-              ]}
-            >
-              <Text
-                style={[
-                  tw`text-4xl font-bold text-white w-full text-center pt-1`,
-                  chosenAns !== null &&
-                    !correct &&
-                    tw`bg-red-400 border-2 border-red-500 rounded-md text-black`,
-                  chosenAns !== null &&
-                    correct &&
-                    tw`bg-green-400 border-2 border-green-500 rounded-md text-black`,
-                ]}
-              >
-                {chosenAns === null ? "?" : chosenAns}
-              </Text>
-            </View>
-          </View>
-          {/* show choices */}
-          <View
-            style={[
-              {
-                transform: [{ rotate: "90deg" }],
-                top: "41%",
-                right: "13%",
-                height: "15%",
-              },
-              tw`absolute  flex flex-row`,
-            ]}
+            {data[done].choices[0]}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            tw`w-1/3 flex justify-center items-center rounded-xl shadow-xl`,
+            { backgroundColor: "#F5F5FD" },
+          ]}
+          onPress={() => {
+            handelPress(data[done].choices[1]);
+          }}
+        >
+          <Text
+            style={[tw`text-4xl font-bold text-white text-center text-black`]}
           >
-            <TouchableOpacity
-              style={[
-                tw`w-1/3 flex justify-center items-center mr-2 rounded-xl shadow-xl`,
-                { backgroundColor: "#F5F5FD" },
-              ]}
-              onPress={() => {
-                handelPress(data[done].choices[0]);
-              }}
-            >
-              <Text
-                style={[
-                  tw`text-4xl font-bold text-white text-center text-black`,
-                ]}
-              >
-                {data[done].choices[0]}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[
-                tw`w-1/3 flex justify-center items-center rounded-xl shadow-xl`,
-                { backgroundColor: "#F5F5FD" },
-              ]}
-              onPress={() => {
-                handelPress(data[done].choices[1]);
-              }}
-            >
-              <Text
-                style={[
-                  tw`text-4xl font-bold text-white text-center text-black`,
-                ]}
-              >
-                {data[done].choices[1]}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[
-                tw`w-1/3 flex justify-center items-center ml-2 rounded-xl shadow-xl`,
-                { backgroundColor: "#F5F5FD" },
-              ]}
-              onPress={() => {
-                handelPress(data[done].choices[2]);
-              }}
-            >
-              <Text
-                style={[
-                  tw`text-4xl font-bold text-white text-center text-black`,
-                ]}
-              >
-                {data[done].choices[2]}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </ImageBackground>
+            {data[done].choices[1]}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            tw`w-1/3 flex justify-center items-center ml-2 rounded-xl shadow-xl`,
+            { backgroundColor: "#F5F5FD" },
+          ]}
+          onPress={() => {
+            handelPress(data[done].choices[2]);
+          }}
+        >
+          <Text
+            style={[tw`text-4xl font-bold text-white text-center text-black`]}
+          >
+            {data[done].choices[2]}
+          </Text>
+        </TouchableOpacity>
       </View>
-    </ImageBackground>
+    </Board>
   );
 }
