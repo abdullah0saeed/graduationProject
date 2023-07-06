@@ -86,6 +86,7 @@ const Compare = ({ navigation }) => {
             wrong,
             word_Pic: data,
             path: "Sum_Sub",
+            taskId,
           });
         }, 500);
       }

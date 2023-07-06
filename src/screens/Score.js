@@ -9,6 +9,7 @@ const Score = ({ navigation }) => {
   const wrong = route.params.wrong;
   const word_Pic = route.params.word_Pic;
   const path = route.params.path;
+  const taskId = route.params.taskId;
 
   return (
     <View style={styles.body}>
@@ -27,7 +28,7 @@ const Score = ({ navigation }) => {
       {/* paly again */}
       <TouchableOpacity
         style={[styles.replayBtn]}
-        onPress={() => navigation.replace(path, { word_Pic })}
+        onPress={() => navigation.replace(path, { word_Pic, taskId })}
       >
         <MaterialCommunityIcons name="replay" size={50} />
         {/* <Image

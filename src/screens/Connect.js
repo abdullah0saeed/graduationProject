@@ -260,6 +260,7 @@ const Connect = ({ navigation }) => {
                 wrong,
                 word_Pic,
                 path: "Connect",
+                taskId,
               });
             }, 400);
           }

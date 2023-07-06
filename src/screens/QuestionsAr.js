@@ -95,6 +95,7 @@ const QuestionsAr = ({ navigation }) => {
         wrong,
         word_Pic: data,
         path: "QuestionsAr",
+        taskId,
       });
     }
   }, [index]);

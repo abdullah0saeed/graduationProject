@@ -1,5 +1,12 @@
 import { useDispatch } from "react-redux";
-import { Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+  StyleSheet,
+} from "react-native";
 import tw from "tailwind-react-native-classnames";
 import { useState, useEffect } from "react";
 import { sendAttempts } from "../store/globalSlice";
@@ -66,8 +73,8 @@ export default function Listen_Choose({ navigation }) {
       row.push(
         <TouchableOpacity
           style={[
-            tw`m-1.5 mr-2 ml-2 flex justify-center  bg-pink-400 rounded-2xl`,
-            { height: `${100 / 7}%` },
+            tw`m-1.5 mr-2 ml-2 flex justify-center `,
+            { height: `${100 / 7}%`, width: "80%" },
           ]}
           key={i}
           onPress={() => {
@@ -75,108 +82,19 @@ export default function Listen_Choose({ navigation }) {
           }}
         >
           {correct0 && i === 0 ? (
-            <View
-              style={[
-                tw` flex justify-center rounded-2xl bg-green-400`,
-                { height: `100 %` },
-              ]}
-            >
-              <Text
-                style={[
-                  tw`text-center text-white text-4xl rounded-2xl font-bold`,
-                  ,
-                ]}
-              >
-                {word_Pic[i]?.definitionInEn}
-              </Text>
-            </View>
+            <View style={styles.correct}></View>
           ) : correct1 && i === 1 ? (
-            <View
-              style={[
-                tw` flex justify-center rounded-2xl bg-green-400`,
-                { height: `100 %` },
-              ]}
-            >
-              <Text
-                style={[
-                  tw`text-center text-white text-4xl rounded-2xl font-bold`,
-                  ,
-                ]}
-              >
-                {word_Pic[i]?.definitionInEn}
-              </Text>
-            </View>
+            <View style={styles.correct}></View>
           ) : correct2 && i === 2 ? (
-            <View
-              style={[
-                tw` flex justify-center rounded-2xl bg-green-400`,
-                { height: `100 %` },
-              ]}
-            >
-              <Text
-                style={[
-                  tw`text-center text-white text-4xl rounded-2xl font-bold`,
-                  ,
-                ]}
-              >
-                {word_Pic[i]?.definitionInEn}
-              </Text>
-            </View>
+            <View style={styles.correct}></View>
           ) : correct3 && i === 3 ? (
-            <View
-              style={[
-                tw` flex justify-center rounded-2xl bg-green-400`,
-                { height: `100 %` },
-              ]}
-            >
-              <Text
-                style={[
-                  tw`text-center text-white text-4xl rounded-2xl font-bold`,
-                  ,
-                ]}
-              >
-                {word_Pic[i]?.definitionInEn}
-              </Text>
-            </View>
+            <View style={styles.correct}></View>
           ) : correct4 && i === 4 ? (
-            <View
-              style={[
-                tw` flex justify-center rounded-2xl bg-green-400`,
-                { height: `100 %` },
-              ]}
-            >
-              <Text
-                style={[
-                  tw`text-center text-white text-4xl rounded-2xl font-bold`,
-                  ,
-                ]}
-              >
-                {word_Pic[i]?.definitionInEn}
-              </Text>
-            </View>
+            <View style={styles.correct}></View>
           ) : correct5 && i === 5 ? (
-            <View
-              style={[
-                tw` flex justify-center rounded-2xl bg-green-400`,
-                { height: `100 %` },
-              ]}
-            >
-              <Text
-                style={[
-                  tw`text-center text-white text-4xl rounded-2xl font-bold`,
-                  ,
-                ]}
-              >
-                {word_Pic[i]?.definitionInEn}
-              </Text>
-            </View>
+            <View style={styles.correct}></View>
           ) : (
-            <View
-              style={[
-                tw` flex justify-center rounded-2xl`,
-                { height: `100 %` },
-              ]}
-            >
+            <View style={[styles.cardView, tw`bg-pink-400`]}>
               <Text
                 style={[
                   tw`text-center text-white text-4xl rounded-2xl font-bold`,
@@ -266,6 +184,25 @@ export default function Listen_Choose({ navigation }) {
         } else if (noRepeat.length === 6) {
           //play sound
           soundEffects(2);
+
+          const sentData = {
+            data1Attempts: wrong0,
+            data2Attempts: wrong1,
+            data3Attempts: wrong2,
+            data4Attempts: wrong3,
+            data5Attempts: wrong4,
+            data6Attempts: wrong5,
+          };
+          dispatch(sendAttempts({ sentData, gameId: "1", taskId }));
+
+          setTimeout(() => {
+            navigation.replace("Score", {
+              wrong,
+              word_Pic,
+              path: "Listen_Choose",
+              taskId,
+            });
+          }, 500);
         }
       }
     } else {
@@ -292,77 +229,68 @@ export default function Listen_Choose({ navigation }) {
   };
 
   return (
-    <>
-      <View style={[{ flex: 1 }, tw`bg-pink-200 `]}>
-        <TouchableOpacity
-          style={
-            (noRepeat.length < 6 && [
-              tw`bg-pink-600 m-2 mb-3 rounded-xl justify-center`,
-              { flex: 1.5 / 15 },
-            ]) ||
-            (noRepeat.length >= 6 && [
-              tw`bg-pink-600 m-2 mb-3 rounded-xl justify-center w-1/3 ml-auto mr-auto`,
-              { flex: 1.5 / 15 },
-            ])
-          }
-          onPress={() => {
-            if (noRepeat.length < 6) {
-              speakWord(
-                word_Pic[randomSound[randomSound.length - 1]]?.definitionInEn
-              );
-            } else {
-              const sentData = {
-                data1Attempts: wrong0,
-                data2Attempts: wrong1,
-                data3Attempts: wrong2,
-                data4Attempts: wrong3,
-                data5Attempts: wrong4,
-                data6Attempts: wrong5,
-              };
-              dispatch(sendAttempts({ sentData, gameId: "1", taskId }));
-              navigation.replace("Score", {
-                wrong,
-                word_Pic,
-                path: "Listen_Choose",
-              });
+    <ImageBackground
+      source={require("../../assets/backgrounds/sum_sub-bg.png")}
+      style={[{ flex: 1 }, tw`justify-center`]}
+      imageStyle={{ resizeMode: "stretch" }}
+    >
+      <View style={[{ flex: 1 }]}>
+        {noRepeat.length < 6 && (
+          <TouchableOpacity
+            style={
+              noRepeat.length < 6 && [
+                tw`bg-pink-600 m-2 mb-3`,
+                {
+                  height: 70,
+                  width: 300,
+                  alignSelf: "center",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  borderRadius: 80,
+                },
+              ]
             }
-          }}
-        >
-          {(noRepeat.length < 6 && (
-            <>
-              <Image
-                source={{
-                  uri: "https://cdn-icons-png.flaticon.com/512/2058/2058142.png",
-                }}
-                style={[
-                  tw`w-1/6 h-4/6`,
-                  { marginTop: "-0.5%", marginStart: "8%" },
-                ]}
-              />
-              <Text
-                style={[
-                  tw`text-center text-white text-2xl`,
-                  { marginTop: "-12%", marginLeft: "11%" },
-                ]}
-              >
-                Listen
-              </Text>
-            </>
-          )) ||
-            (noRepeat.length >= 6 && (
-              <>
-                <Image
-                  source={require("../../assets/rArrow.png")}
-                  style={[
-                    tw`w-5/6 h-4/6`,
-                    { marginTop: "-0.5%", marginStart: "8%" },
-                  ]}
-                />
-              </>
-            ))}
-        </TouchableOpacity>
-        <View style={[tw`mb-0.5`, { flex: 1 }]}>{handleView()}</View>
+            onPress={() => {
+              if (noRepeat.length < 6) {
+                speakWord(
+                  word_Pic[randomSound[randomSound.length - 1]]?.definitionInEn
+                );
+              }
+            }}
+          >
+            <Image
+              source={{
+                uri: "https://cdn-icons-png.flaticon.com/512/2058/2058142.png",
+              }}
+              style={[{ width: 70, height: 50 }]}
+            />
+            <Text style={[tw`text-center w-3/6 text-white text-3xl`]}>
+              Listen
+            </Text>
+          </TouchableOpacity>
+        )}
+        <View style={[tw`mb-0.5`, { flex: 1, alignItems: "center" }]}>
+          {handleView()}
+        </View>
       </View>
-    </>
+    </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  correct: {
+    backgroundColor: "#3CBA9E",
+    display: "none",
+    justifyContent: "center",
+    borderRadius: 30,
+    height: "100%",
+  },
+  cardView: {
+    display: "flex",
+    justifyContent: "center",
+    borderRadius: 30,
+    height: "100%",
+    opacity: 0.9,
+  },
+});

@@ -87,6 +87,7 @@ export default function Sum_Sub({ navigation }) {
             wrong,
             word_Pic: data,
             path: "Sum_Sub",
+            taskId,
           });
         }, 1600);
       }

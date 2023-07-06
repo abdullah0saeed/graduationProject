@@ -50,7 +50,10 @@ export default function Board({ children }) {
       >
         <ImageBackground
           source={require("../../assets/images/greenBoard.png")}
-          style={[tw`w-full h-full relative`]}
+          style={[
+            tw`w-full h-full relative`,
+            { display: "flex", justifyContent: "center", alignItems: "center" },
+          ]}
         >
           {children}
         </ImageBackground>
