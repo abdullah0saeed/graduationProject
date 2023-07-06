@@ -179,51 +179,22 @@ export default function Sum_Sub({ navigation }) {
           tw`absolute  flex flex-row`,
         ]}
       >
-        <TouchableOpacity
-          style={[
-            tw`w-1/3 flex justify-center items-center mr-2 rounded-xl shadow-xl`,
-            { backgroundColor: "#F5F5FD" },
-          ]}
-          onPress={() => {
-            handelPress(data[done].choices[0]);
-          }}
-        >
-          <Text
-            style={[tw`text-4xl font-bold text-white text-center text-black`]}
+        {data[done].choices.map((choice, i) => (
+          <TouchableOpacity
+            key={i}
+            style={[
+              tw`w-1/3 flex justify-center items-center mr-2 rounded-xl shadow-xl`,
+              { backgroundColor: "#F5F5FD" },
+            ]}
+            onPress={() => {
+              handelPress(choice);
+            }}
           >
-            {data[done].choices[0]}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            tw`w-1/3 flex justify-center items-center rounded-xl shadow-xl`,
-            { backgroundColor: "#F5F5FD" },
-          ]}
-          onPress={() => {
-            handelPress(data[done].choices[1]);
-          }}
-        >
-          <Text
-            style={[tw`text-4xl font-bold text-white text-center text-black`]}
-          >
-            {data[done].choices[1]}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            tw`w-1/3 flex justify-center items-center ml-2 rounded-xl shadow-xl`,
-            { backgroundColor: "#F5F5FD" },
-          ]}
-          onPress={() => {
-            handelPress(data[done].choices[2]);
-          }}
-        >
-          <Text
-            style={[tw`text-4xl font-bold text-white text-center text-black`]}
-          >
-            {data[done].choices[2]}
-          </Text>
-        </TouchableOpacity>
+            <Text style={[tw`text-4xl font-bold text-center text-black`]}>
+              {choice}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </Board>
   );
