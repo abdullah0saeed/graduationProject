@@ -14,23 +14,27 @@ const Score = ({ navigation }) => {
   return (
     <View style={styles.body}>
       {/* show the score */}
-      <View style={styles.viewContainer}>
-        <Text style={[styles.text, { width: "60%" }, tw``]}>Score</Text>
-        <Text style={[styles.textContainer, { width: "40%" }]}>
-          {word_Pic.length - wrong}
-        </Text>
-      </View>
-      {/* show wrong tries */}
-      <View style={[styles.viewContainer, { marginTop: "12%" }]}>
-        <Text style={[styles.text, { width: "75%" }]}>Wrong Tries</Text>
-        <Text style={[styles.textContainer, { width: "25%" }]}>{wrong}</Text>
+      <View style={styles.container}>
+        <View style={styles.viewContainer}>
+          <Text style={[styles.text, { width: "70%" }, tw``]}>Score</Text>
+          <Text style={[styles.textContainer, { backgroundColor: "#00A91B" }]}>
+            {word_Pic.length - wrong}
+          </Text>
+        </View>
+        {/* show wrong tries */}
+        <View style={[styles.viewContainer, { marginTop: "12%" }]}>
+          <Text style={[styles.text, { width: "70%" }]}>Wrong Tries</Text>
+          <Text style={[styles.textContainer, { backgroundColor: "#D82C2C" }]}>
+            {wrong}
+          </Text>
+        </View>
       </View>
       {/* paly again */}
       <TouchableOpacity
         style={[styles.replayBtn]}
         onPress={() => navigation.replace(path, { word_Pic, taskId })}
       >
-        <MaterialCommunityIcons name="replay" size={50} />
+        <MaterialCommunityIcons name="replay" size={60} color={"white"} />
         {/* <Image
           source={require("../../assets/retry.png")}
           style={{ width: "15%", height: "70%", marginEnd: "6%" }}
@@ -48,8 +52,9 @@ const Score = ({ navigation }) => {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
+            backgroundColor: "#312F73",
           },
-          tw`bg-yellow-600 `,
+          tw` `,
         ]}
         onPress={() => navigation.replace("TasksMap", { word_Pic })}
       >
@@ -57,7 +62,7 @@ const Score = ({ navigation }) => {
           style={[
             {
               fontSize: 20,
-              fontWeight: "bold",
+              fontWeight: "600",
               color: "#fff",
               marginRight: 10,
             },
@@ -77,14 +82,20 @@ const Score = ({ navigation }) => {
       <TouchableOpacity
         style={[
           styles.TouchableOpacity,
-          { marginTop: "3%", backgroundColor: "#BA7CC8" },
+          { marginTop: "3%", backgroundColor: "#D82C2C" },
         ]}
         onPress={() => {
           navigation.navigate("Start");
           BackHandler.exitApp();
         }}
       >
-        <Text style={{ fontSize: 20, fontWeight: "bold", color: "#fff" }}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            color: "#fff",
+          }}
+        >
           Quit
         </Text>
       </TouchableOpacity>
@@ -93,32 +104,41 @@ const Score = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    width: 300,
+    height: 250,
+    padding: 28,
+    gap: 15,
+    backgroundColor: "#55548A",
+    marginTop: 60,
+    borderRadius: 20,
+    elevation: 10,
+  },
   viewContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    padding: "6%",
-    margin: "5%",
-    marginTop: "13%",
   },
   textContainer: {
     backgroundColor: "#efe",
     textAlign: "center",
     textAlignVertical: "center",
-    height: 40,
-    marginTop: "2.5%",
-    fontSize: 22,
-    borderRadius: 5,
-    color: "#000",
+    height: 45,
+    width: 100,
+    fontSize: 24,
+    borderRadius: 50,
+    color: "#fff",
     fontWeight: "500",
+    borderWidth: 1,
+    elevation: 10,
   },
   body: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#cfc",
+    backgroundColor: "#9C9AFF",
   },
   text: {
-    color: "#000",
+    color: "#fff",
     fontSize: 30,
     fontWeight: "bold",
   },
@@ -127,23 +147,25 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 20,
+    borderRadius: 10,
     margin: "12%",
     marginBottom: "3%",
+    elevation: 10,
   },
   replayBtn: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#1DDA99",
+    backgroundColor: "#55548A",
     flexDirection: "row",
     marginBottom: "5%",
-    marginTop: 20,
+    marginTop: 40,
     padding: 10,
     width: 90,
     height: 90,
-    borderRadius: 45,
-    borderWidth: 4,
-    borderColor: "#0ffA99",
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: "#5554aa",
+    elevation: 5,
   },
 });
 
