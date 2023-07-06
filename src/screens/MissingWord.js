@@ -149,30 +149,31 @@ export default function MissingWord({ navigation }) {
               }}
               style={[
                 {
-                  borderColor:
-                    selectedIndex === i && correct ? "#3F86A7" : "#3B464F",
-                  borderWidth: 3,
                   borderRadius: 15,
-                  padding: 20,
+                  padding: 15,
                   alignItems: "center",
-                  marginHorizontal: 3,
+                  marginHorizontal: 4,
                   opacity: 0.8,
+                  backgroundColor: "#F5F5FD",
                 },
                 tw`${
                   selectedIndex === i && changBg && correct
                     ? "bg-green-400"
                     : selectedIndex === i && changBg && !correct
                     ? "bg-red-400"
-                    : "bg-black"
+                    : ""
                 }`,
               ]}
             >
               <Text
-                style={{
-                  color: selectedIndex === i && changBg ? "#000" : "#fff",
-                  fontSize: 22,
-                  justifyContent: "center",
-                }}
+                style={[
+                  {
+                    color: "#000",
+                    fontSize: 22,
+                    justifyContent: "center",
+                  },
+                  tw`font-semibold`,
+                ]}
               >
                 {word}
               </Text>
@@ -202,7 +203,6 @@ const styles = StyleSheet.create({
   choicesContainer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
     position: "absolute",
     bottom: "17%",
   },
