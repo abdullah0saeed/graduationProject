@@ -34,7 +34,7 @@ export default function App() {
         <NavigationContainer>
           <StatusBar backgroundColor="#000" style="light" />
           <stack.Navigator>
-            {/* <stack.Screen
+            <stack.Screen
               name="Login"
               component={Login}
               options={{ headerShown: false }}
@@ -79,7 +79,7 @@ export default function App() {
               name="Sum_Sub"
               component={Sum_Sub}
               options={{ headerShown: false }}
-            /> */}
+            />
             <stack.Screen
               name="QuestionsAr"
               component={QuestionsAr}
