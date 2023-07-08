@@ -36,7 +36,8 @@ export default function TasksMap({ navigation }) {
   const dispatch = useDispatch();
   const listRef = useRef();
 
-  const word_Pic = useSelector((state) => state.global.word_Pic);
+  const { word_Pic, url } = useSelector((state) => state.global);
+  const { playerPic } = useSelector((state) => state.auth);
 
   // console.log("data:", word_Pic);
 
@@ -51,6 +52,7 @@ export default function TasksMap({ navigation }) {
       if (netInfo.isConnected && netInfo.isInternetReachable) {
         setConnected(true);
         dispatch(fetchData());
+
         await AsyncStorage.setItem("data", JSON.stringify(word_Pic));
       } else {
         setConnected(false);
@@ -117,17 +119,17 @@ export default function TasksMap({ navigation }) {
     : null;
 
   //to scroll to the next level to be played
-  useEffect(() => {
-    // if (listRef.current) {
-    //   const scrollOffset = listRef.current.getScrollOffset();
-    //   const contentSize = listRef.current.getContentSize();
-    //   const targetOffset = scrollOffset + 3 * contentSize.height;
-    //   listRef.current.scrollTo({
-    //     offset: targetOffset,
-    //     animated: true,
-    //   });
-    // }
-  }, []);
+  // useEffect(() => {
+  // if (listRef.current) {
+  //   const scrollOffset = listRef.current.getScrollOffset();
+  //   const contentSize = listRef.current.getContentSize();
+  //   const targetOffset = scrollOffset + 3 * contentSize.height;
+  //   listRef.current.scrollTo({
+  //     offset: targetOffset,
+  //     animated: true,
+  //   });
+  // }
+  // }, []);
 
   return (
     <ImageBackground
@@ -206,7 +208,16 @@ export default function TasksMap({ navigation }) {
                   }}
                 >
                   <View style={{ marginLeft: "45%" }}>
-                    <Text style={[styles.text]}>{item.taskNumber}</Text>
+                    <Text
+                      style={[
+                        styles.text,
+                        !allLevels[index].done && {
+                          backgroundColor: "#FF9F2E",
+                        },
+                      ]}
+                    >
+                      {item.taskNumber}
+                    </Text>
                     {allLevels[index].done == false && (
                       <View
                         style={{
@@ -223,7 +234,11 @@ export default function TasksMap({ navigation }) {
                         }}
                       >
                         <Image
-                          source={require("../../assets/smile.png")}
+                          source={
+                            playerPic === "Profile/default.png"
+                              ? require("../../assets/smile.png")
+                              : { uri: url + playerPic }
+                          }
                           style={{ width: "100%", height: "100%" }}
                         />
                       </View>
@@ -257,6 +272,10 @@ export default function TasksMap({ navigation }) {
                         !allLevels[index - 1].done && {
                           backgroundColor: "#929495",
                         },
+                        !allLevels[index].done &&
+                          allLevels[index - 1].done && {
+                            backgroundColor: "#FF9F2E",
+                          },
                       ]}
                     >
                       {item.taskNumber}
@@ -278,7 +297,11 @@ export default function TasksMap({ navigation }) {
                           }}
                         >
                           <Image
-                            source={require("../../assets/smile.png")}
+                            source={
+                              playerPic === "Profile/default.png"
+                                ? require("../../assets/smile.png")
+                                : { uri: url + playerPic }
+                            }
                             style={{ width: "100%", height: "100%" }}
                           />
                         </View>
